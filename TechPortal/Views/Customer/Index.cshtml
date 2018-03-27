@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Techportal.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customer List</h2>
+
+@if (Model.Count() <= 1)
+{
+    <p>No Customers Found</p>
+}
+else
+{
+    foreach (var customer in Model)
+    {
+    <p>@customer.CompanyName <br />
+    @customer.City</p>
+    <hr />
+
+    }
+}
+
