@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin;
+﻿//Sam is a fucken numpty
+
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(Techportal.Startup))]
