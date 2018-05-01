@@ -2,7 +2,8 @@ namespace Techportal.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+    using Techportal.Models;
+
     public partial class Populate_Customers : DbMigration
     {
         public override void Up()
@@ -15,6 +16,7 @@ namespace Techportal.Migrations
         public override void Down()
         {
             Sql("Truncate table Customers");
+            Sql("DBCC CHECKIDENT(Customers, RESEED, 1);");
         }
     }
 }
