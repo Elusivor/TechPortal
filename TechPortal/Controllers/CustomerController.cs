@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,22 +36,9 @@ namespace Techportal.Controllers
             return View(viewmodel);
         }
 
-        private IEnumerable<Customer> GetCustomer()
-        {
-            var customers = new List<Customer>
-            {
-                new Customer{ ID = 1, CompanyName = "Company A", City = "City A"},
-                new Customer{ ID = 2, CompanyName = "Company B", City = "City B"},
-                new Customer{ ID = 3, CompanyName = "Company C", City = "City C"},
-                new Customer{ ID = 4, CompanyName = "Company D", City = "City D"},
-            };
-
-            return customers;
-        }
-
         public ActionResult Edit(int ID)
         {
-            var customer = GetCustomer().SingleOrDefault(c => c.ID == ID);
+            var customer = _context.Customers.SingleOrDefault(c => c.ID == ID);
 
             if (customer == null)
                 return HttpNotFound();
@@ -60,7 +48,8 @@ namespace Techportal.Controllers
 
         public ActionResult Index()
         {
-            return View(GetCustomer());
+            var customers = _context.Customers.Include(c => c.CustomerType).ToList();
+            return View(customers);
         }
 
         public ActionResult Param(int ID)
@@ -95,6 +84,18 @@ namespace Techportal.Controllers
         public ActionResult ByRandomLabRoute(int Year, int Month, int Day)
         {
             return Content($"{Year} | {Month} | {Day}");
+        }
+
+        private ApplicationDbContext _context;
+
+        public CustomerController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
     }
 }

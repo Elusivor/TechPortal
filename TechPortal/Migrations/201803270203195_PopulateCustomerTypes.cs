@@ -17,6 +17,7 @@ namespace Techportal.Migrations
         
         public override void Down()
         {
+            Sql("Truncate Table CustomerTypes");
         }
     }
 }

@@ -6,7 +6,7 @@
 
 <h2>Customer List</h2>
 
-@if (Model.Count() <= 1)
+@if (Model.Count() <= 0)
 {
     <p>No Customers Found</p>
 }
@@ -14,10 +14,14 @@ else
 {
     foreach (var customer in Model)
     {
-    <p>@customer.CompanyName <br />
-    @customer.City</p>
+    <p>@customer.CompanyName</p>
+    <p>@Html.ActionLink(customer.CompanyName, "Edit","Customer", new { id = customer.ID }, null)</p>
+    <p>@customer.City</p>
+    <p>@customer.CustomerType.Discount</p>
     <hr />
 
     }
 }
+
+
 
