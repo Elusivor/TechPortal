@@ -1,31 +1,31 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Techportal.Models;
-using Techportal.ViewModels;
+using TechPortal.Models;
+using TechPortal.ViewModels;
 
-namespace Techportal.Controllers
+namespace TechPortal.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
-        // GET: Customer
-        public ActionResult random()
+        // GET: Customers
+        public ActionResult Random()
         {
             var randomcustomer = new Customer()
             {
                 ID = 0,
                 CompanyName = "TechBest"
             };
-       
+
             var randomList = new List<Product>
             {
-                new Product{ ID = 1, Name = "Product A"},
-                new Product{ ID = 2, Name = "Product B"},
-                new Product{ ID = 3, Name = "Product C"},
-                new Product{ ID = 4, Name = "Product D"},
+                new Product {ID=1, Name="Product A"},
+                new Product {ID=1, Name="Product A"},
+                new Product {ID=1, Name="Product A"}
             };
 
             var viewmodel = new ArbitraryCustomerViewModel
@@ -45,7 +45,6 @@ namespace Techportal.Controllers
 
             return View(customer);
         }
-
         public ActionResult Index()
         {
             var customers = _context.Customers.Include(c => c.CustomerType).ToList();
@@ -54,18 +53,8 @@ namespace Techportal.Controllers
 
         public ActionResult Param(int ID)
         {
-            //Return If or Else If.
-            if (ID == 1)
-            {
-                return Content("Number 1!");
-            }
-            else if (ID == 420)
-            {
-                return Content("What a funny number");
-            }
-            return Content("Try 1 or 0");
+            return Content(ID.ToString());
         }
-
         public ActionResult Optional(int? rowcount, string sortby)
         {
             if (!rowcount.HasValue)
@@ -75,15 +64,26 @@ namespace Techportal.Controllers
 
             return Content("Optional test. RowCount: " + rowcount.ToString() + ", SortBy: " + sortby);
         }
-
         public ActionResult ByCountryAndStatus(string Country, string Status)
         {
             return Content($"{Country} | {Status}");
         }
-
-        public ActionResult ByRandomLabRoute(int Year, int Month, int Day)
+        public ActionResult YMD(int Year, int Month, int Day)
         {
-            return Content($"{Year} | {Month} | {Day}");
+            if (Month > 12)
+                return Content("Please enter a month under 12");
+            if (Day > 32)
+                return Content("Please enter a day under 32");
+            return Content($"Year {Year}, Month {Month}, Day {Day}");
+        }
+
+        public ActionResult Edit(int ID)
+        {
+            var customer = GetCustomers().SingleOrDefault(c => c.ID == ID);
+
+            if (customer == null)
+                return HttpNotFound();
+            return View(customer);
         }
 
         private ApplicationDbContext _context;
@@ -92,6 +92,7 @@ namespace Techportal.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
 
         protected override void Dispose(bool disposing)
         {

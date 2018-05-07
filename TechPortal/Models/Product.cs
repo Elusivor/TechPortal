@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Techportal.Models;
 
 namespace TechPortal.Models
 {
@@ -9,5 +6,9 @@ namespace TechPortal.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public float UnitPrice { get; set; }
+        public int StockLevel { get; set; }
+        public int DiscountRate { get; set; }
+        public ProductCategory Category { get; set; }
     }
 }

@@ -1,14 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Techportal.Models;
 using TechPortal.Models;
 
 namespace TechPortal.Controllers
 {
     public class ProductsController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public ProductsController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            base.Dispose(disposing);
+        }
         // GET: Products
         public ActionResult Random()
         {
@@ -32,16 +44,17 @@ namespace TechPortal.Controllers
         }
         public ActionResult Index()
         {
-            return View(GetProducts());
+            var products = _context.Products.Include(c => c.Category).ToList();
+            return View(products);
         }
         public ActionResult Edit(int ID)
         {
-            var products = GetProducts().SingleOrDefault(c => c.ID == ID);
+            var product = _context.Products.Include(c =>c.Category).SingleOrDefault(c => c.ID == ID);
 
-            if (products == null)
+            if (product == null)
                 return HttpNotFound();
 
-            return View(products);
+            return View(product);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Techportal.ViewModels
 {
-    public class Product
+    public class ProductViewModel
     {
         public int ID { get; set; }
         public string CompanyName { get; set; }

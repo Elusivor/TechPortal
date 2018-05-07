@@ -190,9 +190,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,16 +221,38 @@
     <Compile Include="Migrations\201805010227165_Populate_Customers.Designer.cs">
       <DependentUpon>201805010227165_Populate_Customers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805070831028_Fix1.cs" />
+    <Compile Include="Migrations\201805070831028_Fix1.Designer.cs">
+      <DependentUpon>201805070831028_Fix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070844518_Add Products and Categories.cs" />
+    <Compile Include="Migrations\201805070844518_Add Products and Categories.Designer.cs">
+      <DependentUpon>201805070844518_Add Products and Categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070846179_Populate Product Categories.cs" />
+    <Compile Include="Migrations\201805070846179_Populate Product Categories.Designer.cs">
+      <DependentUpon>201805070846179_Populate Product Categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070849368_Added Discount Rate to Products Table.cs" />
+    <Compile Include="Migrations\201805070849368_Added Discount Rate to Products Table.Designer.cs">
+      <DependentUpon>201805070849368_Added Discount Rate to Products Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805070849580_Populate Products.cs" />
+    <Compile Include="Migrations\201805070849580_Populate Products.Designer.cs">
+      <DependentUpon>201805070849580_Populate Products.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ArbitraryCustomerViewModel.cs" />
-    <Compile Include="ViewModels\Product.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-slate.css" />
@@ -294,6 +317,9 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\edit.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\random.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +355,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805010227165_Populate_Customers.resx">
       <DependentUpon>201805010227165_Populate_Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070831028_Fix1.resx">
+      <DependentUpon>201805070831028_Fix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070844518_Add Products and Categories.resx">
+      <DependentUpon>201805070844518_Add Products and Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070846179_Populate Product Categories.resx">
+      <DependentUpon>201805070846179_Populate Product Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070849368_Added Discount Rate to Products Table.resx">
+      <DependentUpon>201805070849368_Added Discount Rate to Products Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805070849580_Populate Products.resx">
+      <DependentUpon>201805070849580_Populate Products.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

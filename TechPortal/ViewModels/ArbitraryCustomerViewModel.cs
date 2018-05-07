@@ -9,6 +9,6 @@ namespace Techportal.ViewModels
     public class ArbitraryCustomerViewModel
     {
         public Customer customer { get; set; }
-        public List<Product> products { get; set; }
+        public List<ProductViewModel> products { get; set; }
     }
 }

@@ -1,16 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Techportal.Models;
+using Techportal.ViewModels;
 using TechPortal.Models;
-using TechPortal.ViewModels;
 
 namespace TechPortal.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _context;
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Customers
         public ActionResult Random()
         {
@@ -20,11 +30,11 @@ namespace TechPortal.Controllers
                 CompanyName = "TechBest"
             };
 
-            var randomList = new List<Product>
+            var randomList = new List<ProductViewModel>
             {
-                new Product {ID=1, Name="Product A"},
-                new Product {ID=1, Name="Product A"},
-                new Product {ID=1, Name="Product A"}
+                new ProductViewModel {ID=1, Name="Product A"},
+                new ProductViewModel {ID=1, Name="Product A"},
+                new ProductViewModel {ID=1, Name="Product A"}
             };
 
             var viewmodel = new ArbitraryCustomerViewModel
@@ -35,36 +45,37 @@ namespace TechPortal.Controllers
             return View(viewmodel);
         }
 
-        private IEnumerable<Customer> GetCustomers()
+        public ActionResult Edit(int ID)
         {
-            var customers = new List<Customer>
-            {
-                new Customer{ID=1, CompanyName="BlackBox Studios", City="Hamilton"},
-                new Customer{ID=2, CompanyName="Focus Studios", City="Auckland"},
-                new Customer{ID=3, CompanyName="Burst the Game is better than Desolation", City="Wellington"}
-            };
-            return customers;
+            var customer = _context.Customers.SingleOrDefault(c => c.ID == ID);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            return View(customer);
         }
         public ActionResult Index()
         {
-            return View(GetCustomers());
+            var customers = _context.Customers.Include(c => c.CustomerType).ToList();
+            return View(customers);
         }
 
         public ActionResult Param(int ID)
         {
             return Content(ID.ToString());
         }
-        public ActionResult Optional (int? rowcount, string sortby)
+        public ActionResult Optional(int? rowcount, string sortby)
         {
             if (!rowcount.HasValue)
                 rowcount = 1;
             if (String.IsNullOrWhiteSpace(sortby))
-                sortby = "No SortBy criteria FEGGET";
-            return Content($"Optional Test. {Environment.NewLine} RowCount: " +rowcount.ToString()+"\r\n SortBy: " +sortby);
+                sortby = "Name";
+
+            return Content("Optional test. RowCount: " + rowcount.ToString() + ", SortBy: " + sortby);
         }
         public ActionResult ByCountryAndStatus(string Country, string Status)
         {
-            return Content($"Country: {Country}, Status: {Status}");
+            return Content($"{Country} | {Status}");
         }
         public ActionResult YMD(int Year, int Month, int Day)
         {
@@ -75,14 +86,14 @@ namespace TechPortal.Controllers
             return Content($"Year {Year}, Month {Month}, Day {Day}");
         }
 
-        public ActionResult Edit (int ID)
-        {
-            var customer = GetCustomers().SingleOrDefault(c => c.ID == ID);
+        //public ActionResult Edit(int ID)
+        //{
+        //    var customer = GetCustomers().SingleOrDefault(c => c.ID == ID);
 
-            if (customer == null)
-                return HttpNotFound();
-
-            return View(customer);
-        }
+        //    if (customer == null)
+        //        return HttpNotFound();
+        //    return View(customer);
+        //}
+    
     }
 }
