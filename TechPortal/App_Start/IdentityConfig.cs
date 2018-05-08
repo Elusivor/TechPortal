@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Techportal.Models;
+using TechPortal.Models;
 
-namespace Techportal
+namespace TechPortal
 {
     public class EmailService : IIdentityMessageService
     {

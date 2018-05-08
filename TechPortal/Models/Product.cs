@@ -1,4 +1,4 @@
-﻿using Techportal.Models;
+﻿using TechPortal.Models;
 
 namespace TechPortal.Models
 {

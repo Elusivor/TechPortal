@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using Techportal.Models;
-using Techportal.ViewModels;
 using TechPortal.Models;
+using TechPortal.ViewModels;
 
 namespace TechPortal.Controllers
 {
@@ -60,6 +59,11 @@ namespace TechPortal.Controllers
             return View(customers);
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
         public ActionResult Param(int ID)
         {
             return Content(ID.ToString());
@@ -94,6 +98,6 @@ namespace TechPortal.Controllers
         //        return HttpNotFound();
         //    return View(customer);
         //}
-    
-    }
+
+    }   
 }

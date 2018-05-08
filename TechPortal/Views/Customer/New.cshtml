@@ -1,0 +1,15 @@
+﻿@model TechPortal.Models.Customer
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New</h2>
+@using (@Html.BeginForm("Create", "Customers"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m=>m.CompanyName)
+        @Html.TextBoxFor(m=>m.CompanyName)
+    </div>
+
+}

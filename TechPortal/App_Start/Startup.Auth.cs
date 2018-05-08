@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using Techportal.Models;
+using TechPortal.Models;
 
-namespace Techportal
+namespace TechPortal
 {
     public partial class Startup
     {

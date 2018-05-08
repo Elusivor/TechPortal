@@ -1,4 +1,4 @@
-namespace Techportal.Migrations
+namespace TechPortal.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

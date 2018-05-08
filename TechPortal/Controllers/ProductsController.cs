@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using Techportal.Models;
 using TechPortal.Models;
 
 namespace TechPortal.Controllers

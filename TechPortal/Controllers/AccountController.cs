@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Techportal.Models;
+using TechPortal.Models;
 
-namespace Techportal.Controllers
+namespace TechPortal.Controllers
 {
     [Authorize]
     public class AccountController : Controller

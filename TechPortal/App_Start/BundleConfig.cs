@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Techportal
+namespace TechPortal
 {
     public class BundleConfig
     {

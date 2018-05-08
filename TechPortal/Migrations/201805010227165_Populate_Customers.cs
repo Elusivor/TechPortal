@@ -1,8 +1,8 @@
-namespace Techportal.Migrations
+namespace TechPortal.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-    using Techportal.Models;
+    using TechPortal.Models;
 
     public partial class Populate_Customers : DbMigration
     {

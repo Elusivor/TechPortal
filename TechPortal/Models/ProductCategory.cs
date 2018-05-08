@@ -1,4 +1,4 @@
-﻿namespace Techportal.Models
+﻿namespace TechPortal.Models
 {
     public class ProductCategory
     {

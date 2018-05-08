@@ -3,8 +3,8 @@
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Techportal.Startup))]
-namespace Techportal
+[assembly: OwinStartupAttribute(typeof(TechPortal.Startup))]
+namespace TechPortal
 {
     public partial class Startup
     {

@@ -1,4 +1,4 @@
-﻿namespace Techportal.ViewModels
+﻿namespace TechPortal.ViewModels
 {
     public class ProductViewModel
     {
