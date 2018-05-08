@@ -13,7 +13,7 @@ namespace TechPortal.Models
         //Fixes Null Error
         [Required]
         [StringLength(255)]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
         public int Discount { get; set; }
         public bool ChargeGST { get; set; }

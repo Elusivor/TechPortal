@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using TechPortal.Models;
+using TechPortal.ViewModels;
 
 namespace TechPortal.Controllers
 {
@@ -54,6 +55,16 @@ namespace TechPortal.Controllers
                 return HttpNotFound();
 
             return View(product);
+        }
+
+        public ActionResult ProductForm (int? ID)
+        {
+            var ProductItem = _context.Products.Where(p => p.ID == ID).FirstOrDefault();
+            var viewModel = new ProductFormViewModel()
+            {
+                ProductCategories = _context.ProductCatergories.ToList()
+            };
+            return View(viewModel);
         }
     }
 }

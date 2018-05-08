@@ -1,0 +1,36 @@
+﻿@model TechPortal.ViewModels.ProductFormViewModel
+@{
+    ViewBag.Title = "ProductForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Product</h2>
+
+@using (Html.BeginForm("Create", "Product"))
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Product.Name)
+        @Html.TextBoxFor(p => p.Product.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.Product.UnitPrice)
+        @Html.TextBoxFor(p => p.Product.UnitPrice, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Product.StockLevel)
+        @Html.TextBoxFor(p => p.Product.StockLevel, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Product.DiscountRate)
+        @Html.TextBoxFor(p => p.Product.DiscountRate, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Product.Category)
+        @Html.DropDownListFor(p => p.Product.Category,
+            new SelectList(Model.ProductCategories,"ID","Name"),
+            "Select Product Category",
+            new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}

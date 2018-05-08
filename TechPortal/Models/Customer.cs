@@ -8,6 +8,7 @@ namespace TechPortal.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name ="Company Name")]
         public string CompanyName { get; set; }
 
         public string City { get; set; }
@@ -17,6 +18,7 @@ namespace TechPortal.Models
 
         //customertype shit
         public CustomerType CustomerType { get; set; }
+        [Display(Name ="Customer Type")]
         public int CustomerTypeID { get; set; }
     }
 

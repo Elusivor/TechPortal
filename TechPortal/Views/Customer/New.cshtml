@@ -1,4 +1,4 @@
-﻿@model TechPortal.Models.Customer
+﻿@model TechPortal.ViewModels.NewCustomerViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,14 +6,24 @@
 
 <h2>New</h2>
 
-@using (@Html.BeginForm("Create", "Customers"))
+@using (@Html.BeginForm("Create", "Customer"))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.CompanyName)
-        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.CompanyName)
+        @Html.TextBoxFor(m => m.Customer.CompanyName, new { @class = "form-control" })
     </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Customer.AllowCredit) Allow Credit?
+         </label>
+    </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.AllowCredit)
-        @Html.CheckBoxFor(m => m.AllowCredit, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Customer.CustomerTypeID)
+        @Html.DropDownListFor(m => m.Customer.CustomerTypeID,
+            new SelectList(Model.CustomerTypes, "ID", "Name"),
+            "Select Customer Type",
+            new { @class = "form-control" })
     </div>
+    <button type="submit" class="btn btn-primary">Save</button>
 }
