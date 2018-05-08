@@ -8,7 +8,7 @@ using TechPortal.ViewModels;
 
 namespace TechPortal.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomerController : Controller
     {
         private ApplicationDbContext _context;
 
@@ -16,7 +16,7 @@ namespace TechPortal.Controllers
         {
             _context.Dispose();
         }
-        public CustomersController()
+        public CustomerController()
         {
             _context = new ApplicationDbContext();
         }

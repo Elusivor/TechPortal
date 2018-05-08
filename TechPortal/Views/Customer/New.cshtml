@@ -5,11 +5,15 @@
 }
 
 <h2>New</h2>
+
 @using (@Html.BeginForm("Create", "Customers"))
 {
     <div class="form-group">
-        @Html.LabelFor(m=>m.CompanyName)
-        @Html.TextBoxFor(m=>m.CompanyName)
+        @Html.LabelFor(m => m.CompanyName)
+        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(m => m.AllowCredit)
+        @Html.CheckBoxFor(m => m.AllowCredit, new { @class = "form-control" })
+    </div>
 }
