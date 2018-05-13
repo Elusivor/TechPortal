@@ -25,7 +25,7 @@ else
 {
     <table>
         <tr>
-            <td class="Header">Product</td>
+            <td class="Header">@Html.ActionLink("Product","Index","Products", new { sortOrder = ViewBag.NameSortParm })</td>
             <td class="Header">Stock Level</td>
             <td class="Header">Unit Price</td>
             <td class="Header">Category</td>

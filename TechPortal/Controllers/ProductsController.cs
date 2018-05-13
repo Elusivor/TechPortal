@@ -57,13 +57,24 @@ namespace TechPortal.Controllers
             return View(product);
         }
 
-        public ActionResult ProductForm (int? ID)
+        public ActionResult ProductForm (string sortOrder)
         {
-            var ProductItem = _context.Products.Where(p => p.ID == ID).FirstOrDefault();
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var products = from p in _context.ProductCatergories
+                           select p;
+            switch(sortOrder)
+            {
+                case "name_desc":
+                    products = products.OrderByDescending(p => p.Name);
+                    break;
+                default:
+                    break;
+            }
+
             var viewModel = new ProductFormViewModel()
             {
-                ProductCategories = _context.ProductCatergories.ToList()
-            };
+                ProductCategories = products.ToList()
+            };           
             return View(viewModel);
         }
     }
